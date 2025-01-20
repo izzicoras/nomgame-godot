@@ -52,7 +52,7 @@ func animatePlayer():
 		else:
 			$Animation.animation = "idle"			
 	else:
-		if velocity.y > 0:
+		if velocity.y >= 0:
 			$Animation.animation = "falling"
 		else:
 			$Animation.animation = "jump"

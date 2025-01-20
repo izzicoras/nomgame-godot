@@ -13,6 +13,9 @@ func reset_time_on_floor() -> void:
 	time_since_on_floor = Time.get_ticks_msec()
 
 func handle_jump(body: CharacterBody2D, is_jump_positioned: Callable, jump_pressed: bool, jump_held: bool) -> void:
+	if body.is_on_ceiling():
+		time_since_on_floor -= 100000;
+	
 	if is_jump_positioned.call():
 		reset_time_on_floor()
 		is_jumping = false
