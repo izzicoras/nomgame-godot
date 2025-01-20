@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=4 uid="uid://b5eryl0v424p"]
+[gd_scene load_steps=9 format=4 uid="uid://b5eryl0v424p"]
 
 [ext_resource type="Texture2D" uid="uid://d4a8jq7b3ymdg" path="res://art/tiles 1.png" id="1_hdaoo"]
+[ext_resource type="Script" path="res://world.gd" id="1_yljw1"]
 [ext_resource type="Script" path="res://addons/TileMapDual/TileMapDual.gd" id="2_vcy6h"]
 [ext_resource type="PackedScene" uid="uid://baukenqi64mkh" path="res://player.tscn" id="3_4op05"]
 [ext_resource type="PackedScene" uid="uid://dhyimehqwpyde" path="res://plant_enemy.tscn" id="4_xyrt3"]
@@ -46,7 +47,8 @@ physics_layer_0/collision_layer = 1
 physics_layer_0/physics_material = SubResource("PhysicsMaterial_x42wd")
 sources/0 = SubResource("TileSetAtlasSource_oagnt")
 
-[node name="Node2D" type="Node2D"]
+[node name="World" type="Node2D"]
+script = ExtResource("1_yljw1")
 
 [node name="World" type="TileMapLayer" parent="."]
 self_modulate = Color(1, 1, 1, 0)
