@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://baukenqi64mkh"]
+[gd_scene load_steps=51 format=3 uid="uid://baukenqi64mkh"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_8ctyi"]
 [ext_resource type="Texture2D" uid="uid://boukyptqr1jv2" path="res://art/mouse falling.png" id="1_huo3i"]
@@ -7,6 +7,11 @@
 [ext_resource type="Texture2D" uid="uid://u71rudlujnuw" path="res://art/mouse jump.png" id="3_43l15"]
 [ext_resource type="Texture2D" uid="uid://bt63nupvaujh0" path="res://art/mouse run cycle.png" id="4_c3u5y"]
 [ext_resource type="Texture2D" uid="uid://tha8kwnfi2xp" path="res://art/mouse wall cling.png" id="7_hkq4h"]
+[ext_resource type="PackedScene" uid="uid://bet1w15tjmcj4" path="res://components/gravity_component.tscn" id="8_8umj6"]
+[ext_resource type="PackedScene" uid="uid://u7u23ptkrgq4" path="res://components/input_component.tscn" id="9_4ubuo"]
+[ext_resource type="PackedScene" uid="uid://djwt85lxi5166" path="res://components/movement_component.tscn" id="10_umivc"]
+[ext_resource type="PackedScene" uid="uid://c7uqo7nt5jhkq" path="res://components/jump_component.tscn" id="11_pa4mi"]
+[ext_resource type="PackedScene" uid="uid://cwjut5m8oxvhh" path="res://components/wall_slide_component.tscn" id="12_b7o41"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vbjel"]
 atlas = ExtResource("2_pqrmv")
@@ -296,14 +301,30 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a3g7x"]
 size = Vector2(15.5, 15.5)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("gravity_component", "input_component", "movement_component", "jump_component", "wall_slide_component")]
 script = ExtResource("1_8ctyi")
+gravity_component = NodePath("GravityComponent")
+input_component = NodePath("InputComponent")
+movement_component = NodePath("MovementComponent")
+jump_component = NodePath("JumpComponent")
+wall_slide_component = NodePath("WallSlideComponent")
 
 [node name="Animation" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ejun6")
 animation = &"wall_cling"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("RectangleShape2D_a3g7x")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="GravityComponent" parent="." instance=ExtResource("8_8umj6")]
+
+[node name="InputComponent" parent="." instance=ExtResource("9_4ubuo")]
+
+[node name="MovementComponent" parent="." instance=ExtResource("10_umivc")]
+
+[node name="JumpComponent" parent="." instance=ExtResource("11_pa4mi")]
+
+[node name="WallSlideComponent" parent="." instance=ExtResource("12_b7o41")]

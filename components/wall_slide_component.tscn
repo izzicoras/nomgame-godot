@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwjut5m8oxvhh"]
+
+[ext_resource type="Script" path="res://components/wall_slide_component.gd" id="1_oux84"]
+
+[node name="WallSlideComponent" type="Node"]
+script = ExtResource("1_oux84")
