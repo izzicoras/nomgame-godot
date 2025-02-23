@@ -1,0 +1,78 @@
+[gd_scene load_steps=18 format=3 uid="uid://crb0t6ddugmi4"]
+
+[ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="1_ej2lc"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="2_mcb3p"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/action.gd" id="3_6rvav"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence_reactive.gd" id="3_s0uiu"]
+[ext_resource type="Script" path="res://scripts/beehave/idle.gd" id="3_wxyr1"]
+[ext_resource type="Script" path="res://scenes/beehave/get_enemy.gd" id="4_itjl2"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/decorators/succeeder.gd" id="5_q5yhs"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/decorators/failer.gd" id="6_icvow"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/simple_parallel.gd" id="7_66hn4"]
+[ext_resource type="Script" path="res://scenes/beehave/snap_animation.gd" id="7_jmqin"]
+[ext_resource type="Script" path="res://scenes/beehave/disable_movement.gd" id="7_qvhq3"]
+[ext_resource type="Script" path="res://scenes/beehave/test_leaf.gd" id="10_qocna"]
+[ext_resource type="Script" path="res://scenes/beehave/can_brace.gd" id="11_8muaq"]
+[ext_resource type="Script" path="res://scenes/beehave/attack.gd" id="11_com40"]
+[ext_resource type="Script" path="res://scenes/beehave/brace.gd" id="11_dx0t0"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/decorators/delayer.gd" id="12_la457"]
+[ext_resource type="Script" path="res://scenes/beehave/rest.gd" id="12_q8q2g"]
+
+[node name="PlantBeeHave" type="Node" node_paths=PackedStringArray("blackboard", "actor")]
+script = ExtResource("1_ej2lc")
+blackboard = NodePath("@Node@17293")
+actor = NodePath("")
+
+[node name="SelectorComposite" type="Node" parent="."]
+script = ExtResource("2_mcb3p")
+
+[node name="SequenceReactiveComposite" type="Node" parent="SelectorComposite"]
+script = ExtResource("3_s0uiu")
+
+[node name="GetEnemy" type="Node" parent="SelectorComposite/SequenceReactiveComposite"]
+script = ExtResource("4_itjl2")
+
+[node name="AlwaysSucceedDecorator" type="Node" parent="SelectorComposite/SequenceReactiveComposite"]
+script = ExtResource("5_q5yhs")
+
+[node name="SelectorComposite" type="Node" parent="SelectorComposite/SequenceReactiveComposite/AlwaysSucceedDecorator"]
+script = ExtResource("2_mcb3p")
+
+[node name="AlwaysFailDecorator" type="Node" parent="SelectorComposite/SequenceReactiveComposite/AlwaysSucceedDecorator/SelectorComposite"]
+script = ExtResource("6_icvow")
+
+[node name="SimpleParallelComposite" type="Node" parent="SelectorComposite/SequenceReactiveComposite/AlwaysSucceedDecorator/SelectorComposite/AlwaysFailDecorator"]
+script = ExtResource("7_66hn4")
+
+[node name="DisableMovement" type="Node" parent="SelectorComposite/SequenceReactiveComposite/AlwaysSucceedDecorator/SelectorComposite/AlwaysFailDecorator/SimpleParallelComposite"]
+script = ExtResource("7_qvhq3")
+
+[node name="SnapAnimation" type="Node" parent="SelectorComposite/SequenceReactiveComposite/AlwaysSucceedDecorator/SelectorComposite/AlwaysFailDecorator/SimpleParallelComposite"]
+script = ExtResource("7_jmqin")
+
+[node name="Attack" type="Node" parent="SelectorComposite/SequenceReactiveComposite/AlwaysSucceedDecorator/SelectorComposite"]
+script = ExtResource("11_com40")
+
+[node name="Rest" type="Node" parent="SelectorComposite/SequenceReactiveComposite/AlwaysSucceedDecorator/SelectorComposite"]
+script = ExtResource("12_q8q2g")
+
+[node name="SequenceReactiveComposite" type="Node" parent="SelectorComposite/SequenceReactiveComposite/AlwaysSucceedDecorator/SelectorComposite"]
+script = ExtResource("3_s0uiu")
+
+[node name="CanBrace" type="Node" parent="SelectorComposite/SequenceReactiveComposite/AlwaysSucceedDecorator/SelectorComposite/SequenceReactiveComposite"]
+script = ExtResource("11_8muaq")
+
+[node name="DelayDecorator" type="Node" parent="SelectorComposite/SequenceReactiveComposite/AlwaysSucceedDecorator/SelectorComposite/SequenceReactiveComposite"]
+script = ExtResource("12_la457")
+
+[node name="Brace" type="Node" parent="SelectorComposite/SequenceReactiveComposite/AlwaysSucceedDecorator/SelectorComposite/SequenceReactiveComposite/DelayDecorator"]
+script = ExtResource("11_dx0t0")
+
+[node name="TestLeaf" type="Node" parent="SelectorComposite/SequenceReactiveComposite/AlwaysSucceedDecorator/SelectorComposite"]
+script = ExtResource("10_qocna")
+
+[node name="Idle" type="Node" parent="SelectorComposite"]
+script = ExtResource("3_wxyr1")
+
+[node name="ActionLeaf" type="Node" parent="SelectorComposite"]
+script = ExtResource("3_6rvav")

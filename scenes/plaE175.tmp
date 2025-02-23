@@ -1,0 +1,129 @@
+[gd_scene load_steps=16 format=3 uid="uid://dqkyou5l0ah8s"]
+
+[ext_resource type="Script" path="res://scripts/plant_struggle_ui.gd" id="1_1d1lm"]
+[ext_resource type="Texture2D" uid="uid://7s6em1x5iil0" path="res://assets/nom UI.png" id="1_jpej8"]
+[ext_resource type="Texture2D" uid="uid://c00hgurs37ya1" path="res://assets/nom struggle icon.png" id="3_to473"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yowi6"]
+atlas = ExtResource("1_jpej8")
+region = Rect2(0, 0, 40, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8sh2d"]
+atlas = ExtResource("1_jpej8")
+region = Rect2(40, 0, 40, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_87wej"]
+atlas = ExtResource("1_jpej8")
+region = Rect2(80, 0, 40, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l8kub"]
+atlas = ExtResource("1_jpej8")
+region = Rect2(120, 0, 40, 34)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c5aw7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yowi6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8sh2d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_87wej")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l8kub")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_72q1l"]
+load_path = "res://.godot/imported/nom struggle icon.png-c87a34300272c235fc6f84d99e33342e.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_30ia6"]
+atlas = SubResource("CompressedTexture2D_72q1l")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_konp2"]
+atlas = SubResource("CompressedTexture2D_72q1l")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6d22f"]
+atlas = SubResource("CompressedTexture2D_72q1l")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w6hc1"]
+atlas = ExtResource("3_to473")
+region = Rect2(0, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g0uk4"]
+atlas = ExtResource("3_to473")
+region = Rect2(0, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qf23l"]
+atlas = ExtResource("3_to473")
+region = Rect2(0, 8, 8, 8)
+
+[node name="PlantStruggleUI" type="Control"]
+layout_mode = 3
+anchor_right = 0.125
+anchor_bottom = 0.194
+offset_bottom = 0.079998
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1d1lm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(20, 17)
+sprite_frames = SubResource("SpriteFrames_c5aw7")
+
+[node name="Player1" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 12.0
+offset_bottom = 12.0
+texture = SubResource("AtlasTexture_30ia6")
+
+[node name="Player2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 4.0
+offset_right = 24.0
+offset_bottom = 12.0
+texture = SubResource("AtlasTexture_konp2")
+
+[node name="Player3" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 4.0
+offset_right = 36.0
+offset_bottom = 12.0
+texture = SubResource("AtlasTexture_6d22f")
+
+[node name="Plant1" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 16.0
+offset_right = 12.0
+offset_bottom = 24.0
+texture = SubResource("AtlasTexture_w6hc1")
+
+[node name="Plant2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 24.0
+offset_bottom = 24.0
+texture = SubResource("AtlasTexture_g0uk4")
+
+[node name="Plant3" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 16.0
+offset_right = 36.0
+offset_bottom = 24.0
+texture = SubResource("AtlasTexture_qf23l")

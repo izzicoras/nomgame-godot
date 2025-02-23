@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dlfede3xntpru"]
+
+[ext_resource type="Script" path="res://components/player/player_struggle_component.gd" id="1_2sord"]
+
+[node name="PlayerStruggleComponent" type="Node"]
+script = ExtResource("1_2sord")

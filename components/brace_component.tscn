@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbhsx1sm5e7as"]
+
+[ext_resource type="Script" path="res://components/brace_component.gd" id="1_eqhbr"]
+
+[node name="BraceComponent" type="Node"]
+script = ExtResource("1_eqhbr")

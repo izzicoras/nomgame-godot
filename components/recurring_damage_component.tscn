@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://cd2f64lsbekiy"]
+
+[ext_resource type="Script" path="res://components/recurring_damage_component.gd" id="1_5g3w0"]
+
+[sub_resource type="GDScript" id="GDScript_us3lu"]
+script/source = "extends Timer
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	print(\"Script running on: \", name)
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[node name="RecurringDamageComponent" type="Node"]
+script = ExtResource("1_5g3w0")
+
+[node name="DamageTimer" type="Timer" parent="."]
+script = SubResource("GDScript_us3lu")
